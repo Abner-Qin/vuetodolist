@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>todolist</title>
+  </head>
+  <body>
+    <div id="app">
+		
+  <input
+    v-model="newTodoText"
+    v-on:keyup.enter="addNewTodo"
+    placeholder="Add a todo"
+  >
+  <ul>
+    <li
+      is="todo-item"
+      v-for="(todo, index) in todos"
+      v-bind:key="todo.id"
+      v-bind:title="todo.title"
+      v-on:remove="todos.splice(index, 1)"
+    ></li>
+  </ul>
+
+  <a href="www.baidu.com" v-on:click.stop="say">1212</a>
+    </div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+  	Vue.component('todo-item', {
+  template: '\
+    <li>\
+      {{ title }}\
+      <button v-on:click="$emit(\'remove\')">X</button>\
+    </li>\
+  ',
+  props: ['title']
+})
+
+new Vue({
+  el: '#app',
+  data: {
+  	
+    newTodoText: '',
+    todos: [
+      {
+        id: 1,
+        title: 'Do the dishes',
+      },
+      {
+        id: 2,
+        title: 'Take out the trash',
+      },
+      {
+        id: 3,
+        title: 'Mow the lawn'
+      }
+    ],
+    nextTodoId: 4
+  },
+  methods: {
+    addNewTodo: function () {
+      this.todos.push({
+        id: this.nextTodoId++,
+        title: this.newTodoText
+      })
+      this.newTodoText = ''
+    },
+    say: function () {
+      alert(123)
+    }
+  }
+   
+ 
+})
+  </script>
+</html>

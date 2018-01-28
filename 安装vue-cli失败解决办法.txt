@@ -1,0 +1,5 @@
+1.npm config set registry https://registry.npm.taobao.org
+2.npm config set registry http://r.cnpmjs.org
+3.npm config set registry http://r.cnpmjs.org
+4.npm install
+5.cnpm install -g vue-cli
